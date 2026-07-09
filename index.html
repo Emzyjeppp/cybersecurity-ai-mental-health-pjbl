@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PjBL Slide - Dampak AI/LLM Terhadap Kesehatan Mental Developer Open Source</title>
+    
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* DESIGN SYSTEM & VARIABLES */
+        :root {
+            --bg-dark: #080710;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border-card: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --primary: #6366f1; /* Indigo */
+            --primary-glow: rgba(99, 102, 241, 0.15);
+            --accent-cyan: #06b6d4;
+            --accent-pink: #ec4899;
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* RESET & BASE STYLES */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        /* AMBIENT BACKGROUND GLOWS */
+        .ambient-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .glow-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.25;
+            mix-blend-mode: screen;
+            animation: floatGlow 12s infinite alternate ease-in-out;
+        }
+
+        .glow-1 {
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, var(--primary) 0%, rgba(0,0,0,0) 70%);
+            top: -10vw;
+            right: -10vw;
+        }
+
+        .glow-2 {
+            width: 45vw;
+            height: 45vw;
+            background: radial-gradient(circle, var(--accent-cyan) 0%, rgba(0,0,0,0) 70%);
+            bottom: -15vw;
+            left: -10vw;
+            animation-delay: -4s;
+        }
+
+        .glow-3 {
+            width: 30vw;
+            height: 30vw;
+            background: radial-gradient(circle, var(--accent-pink) 0%, rgba(0,0,0,0) 70%);
+            top: 40%;
+            left: 35%;
+            animation-delay: -8s;
+            opacity: 0.15;
+        }
+
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 30px) scale(1.1); }
+        }
+
+        /* PRESENTATION CONTAINER */
+        .presentation-container {
+            position: relative;
+            width: 92vw;
+            height: 85vh;
+            max-width: 1200px;
+            max-height: 800px;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* SLIDES CONTAINER */
+        .slides-wrapper {
+            position: relative;
+            flex-grow: 1;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* SLIDE CARD */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.95) translateZ(-50px);
+            transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+            background: var(--bg-card);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--border-card);
+            border-radius: 24px;
+            padding: 4.5rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
+
+        /* ACTIVE SLIDE STATE */
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1) translateZ(0);
+            z-index: 2;
+        }
+
+        /* PREVIOUS SLIDE STATE */
+        .slide.prev-slide {
+            transform: scale(0.9) translateX(-100%);
+            opacity: 0;
+        }
+
+        /* NEXT SLIDE STATE */
+        .slide.next-slide {
+            transform: scale(0.9) translateX(100%);
+            opacity: 0;
+        }
+
+        /* SLIDE CONTENT TYPOGRAPHY & LAYOUT */
+        .slide-header {
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .slide-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-cyan);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            background: rgba(6, 182, 212, 0.05);
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            margin-bottom: 0.75rem;
+        }
+
+        .slide-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            background: linear-gradient(135deg, #fff 30%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slide-body {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            flex-grow: 1;
+        }
+
+        p.lead {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        /* GRID LAYOUTS FOR CONTENT */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* INTERACTIVE CARDS & BADGES */
+        .feature-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-cyan));
+            opacity: 0;
+            transition: var(--transition-smooth);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 1.75rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* HIGHLIGHT TEXT */
+        .highlight-text {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .accent-gradient-text {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        /* BULLET LIST STYLING */
+        ul.custom-list {
+            list-style: none;
+        }
+
+        ul.custom-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        ul.custom-list li strong {
+            color: #fff;
+        }
+
+        ul.custom-list li::before {
+            content: "\f058"; /* Check icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* STATS DISPLAY */
+        .stat-group {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: rgba(99, 102, 241, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            padding: 1.25rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--accent-pink);
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(236, 72, 153, 0.2);
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        /* COVER SLIDE SPECIFIC */
+        .cover-slide {
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cover-title {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 1000px;
+            background: linear-gradient(135deg, #ffffff 40%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .cover-subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-cyan);
+            letter-spacing: 0.05em;
+            font-weight: 500;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+        }
+
+        .meta-box {
+            display: inline-flex;
+            gap: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-card);
+            padding: 1rem 2rem;
+            border-radius: 100px;
+            margin-bottom: 2rem;
+        }
+
+        .meta-item {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .meta-item strong {
+            color: #fff;
+        }
+
+        /* INTERACTIVE PROCESS FLOW (BAB 3) */
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .process-flow::before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent-cyan));
+            top: 25px;
+            left: 10%;
+            z-index: 1;
+            opacity: 0.3;
+        }
+
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+            width: 18%;
+            text-align: center;
+        }
+
+        .step-num {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 2px solid var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-display);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+            box-shadow: 0 0 15px var(--primary-glow);
+            transition: var(--transition-smooth);
+        }
+
+        .process-step:hover .step-num {
+            background: var(--primary);
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.5);
+        }
+
+        .step-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* NAVIGATION & PROGRESS INTERFACES */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding: 0 1rem;
+            z-index: 20;
+        }
+
+        .progress-container {
+            flex-grow: 1;
+            margin-right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .progress-bar-bg {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 10%;
+            background: linear-gradient(90deg, var(--primary), var(--accent-cyan));
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        .controls {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn-nav {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            border: 1px solid var(--border-card);
+            background: rgba(255, 255, 255, 0.03);
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-nav:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-nav:active {
+            transform: translateY(0);
+        }
+
+        /* KEYBOARD TIP SHORTCUT */
+        .keyboard-tip {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.25);
+            display: flex;
+            gap: 1rem;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .kbd-key {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        /* ASYMMETRY COMPARISON SECTION */
+        .vs-container {
+            display: grid;
+            grid-template-columns: 1fr 60px 1fr;
+            align-items: center;
+            margin-top: 1rem;
+            gap: 1rem;
+        }
+
+        .vs-pane {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 1.5rem;
+            height: 100%;
+        }
+
+        .vs-pane.offense {
+            border-left: 3px solid var(--accent-pink);
+        }
+
+        .vs-pane.defense {
+            border-left: 3px solid var(--accent-cyan);
+        }
+
+        .vs-badge {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #fff;
+            text-align: center;
+            font-family: var(--font-display);
+        }
+
+        /* ANIMATED ENTRANCES */
+        .slide.active .slide-title {
+            animation: slideDownIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .slide.active .slide-body > * {
+            animation: fadeUpIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        /* Delays for children */
+        .slide.active .delay-1 { animation-delay: 0.1s; }
+        .slide.active .delay-2 { animation-delay: 0.2s; }
+        .slide.active .delay-3 { animation-delay: 0.3s; }
+        .slide.active .delay-4 { animation-delay: 0.4s; }
+
+        @keyframes slideDownIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeUpIn {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* RESPONSIVE DESIGN FOR SMALLER SCREEN OR LAPTOPS */
+        @media (max-height: 700px) {
+            .slide {
+                padding: 2.5rem 3rem;
+            }
+            .slide-title {
+                font-size: 2rem;
+            }
+            .slide-header {
+                margin-bottom: 1.5rem;
+            }
+            .cover-title {
+                font-size: 2.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient dynamic gradients -->
+    <div class="ambient-bg">
+        <div class="glow-circle glow-1"></div>
+        <div class="glow-circle glow-2"></div>
+        <div class="glow-circle glow-3"></div>
+    </div>
+
+    <!-- Presentation wrapper -->
+    <div class="presentation-container">
+        
+        <!-- Slides viewbox -->
+        <div class="slides-wrapper" id="slides-wrapper">
+            
+            <!-- Slide 1: Cover -->
+            <div class="slide active cover-slide">
+                <div class="slide-badge">Tugas Project-Based Learning (PjBL)</div>
+                <h1 class="cover-title">Analisis Dampak Penggunaan Teknologi AI/LLM Terhadap Kesehatan Mental Developer Proyek Open Source</h1>
+                <p class="cover-subtitle">Studi Kasus: Maintainer Curl & Linux Kernel</p>
+                
+                <div class="meta-box delay-2">
+                    <div class="meta-item"><i class="fa-solid fa-graduation-cap"></i> <strong>UTDI Yogyakarta</strong></div>
+                    <div class="meta-item"><i class="fa-solid fa-users"></i> Anggota Kelompok: <strong>3-5 Mahasiswa</strong></div>
+                    <div class="meta-item"><i class="fa-solid fa-calendar"></i> Tahun Ajaran: <strong>2026</strong></div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Latar Belakang -->
+            <div class="slide">
+                <div class="slide-header">
+                    <div class="slide-badge">Bab I: Pendahuluan</div>
+                    <h2 class="slide-title">Latar Belakang Permasalahan</h2>
+                </div>
+                <div class="slide-body grid-2">
+                    <div>
+                        <p class="lead">Perangkat lunak open source (FOSS) adalah fondasi teknologi dunia, namun fondasi ini ditopang secara sukarela.</p>
+                        <ul class="custom-list delay-1">
+                            <li><strong>Ekosistem Kritis:</strong> Linux kernel & `curl` tertanam di miliaran perangkat global.</li>
+                            <li><strong>Paradigma Baru:</strong> AI / LLM (seperti Claude Code) menyederhanakan pemindaian bug siber.</li>
+                            <li><strong>Sisi Gelap Otomasi:</strong> Satu klik scan AI memicu banjir ribuan draf laporan kerentanan ke pihak pengembang.</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card delay-2" style="background: rgba(99, 102, 241, 0.03); border-color: rgba(99, 102, 241, 0.15)">
+                        <div class="card-icon" style="color: var(--accent-pink);"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <h3 class="card-title">Mengapa Ini Menjadi Masalah Mental?</h3>
+                        <p class="card-desc" style="font-size: 0.95rem; line-height: 1.6;">
+                            Maintainer memiliki <strong>hati nurani & tanggung jawab moral</strong> yang tinggi terhadap kode mereka. Mereka tidak bisa mengabaikan laporan keamanan begitu saja, yang berujung pada rasa cemas berkelanjutan dan kelelahan mental.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Rumusan Masalah & Tujuan -->
+            <div class="slide">
+                <div class="slide-header">
+                    <div class="slide-badge">Bab I: Pendahuluan</div>
+                    <h2 class="slide-title">Rumusan Masalah & Tujuan Proyek</h2>
+                </div>
+                <div class="slide-body grid-2">
+                    <div class="feature-card">
+                        <div class="card-icon" style="color: var(--accent-pink);"><i class="fa-solid fa-circle-question"></i></div>
+                        <h3 class="card-title">Rumusan Masalah</h3>
+                        <ul class="custom-list delay-1" style="font-size: 0.9rem;">
+                            <li>Bagaimana AI/LLM mengubah <strong>beban kerja</strong> maintainer open source secara drastis?</li>
+                            <li>Apa saja <strong>dampak psikologis</strong> spesifik yang dialami developer?</li>
+                            <li>Bagaimana <strong>langkah mitigasi</strong> yang tepat demi melindungi komunitas developer?</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
+                        <h3 class="card-title">Tujuan PjBL</h3>
+                        <ul class="custom-list delay-2" style="font-size: 0.9rem;">
+                            <li>Menganalisis pergeseran <strong>asimetri kerja</strong> akibat penemuan celah keamanan berbasis AI.</li>
+                            <li>Mengidentifikasi gangguan kesehatan mental seperti <strong>burnout</strong> & <strong>anxiety</strong>.</li>
+                            <li>Merumuskan <strong>rekomendasi kebijakan etis</strong> pelaporan bug demi kenyamanan pengembang.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Tinjauan Pustaka -->
+            <div class="slide">
+                <div class="slide-header">
+                    <div class="slide-badge">Bab II: Tinjauan Pustaka</div>
+                    <h2 class="slide-title">Landasan Teori Utama</h2>
+                </div>
+                <div class="slide-body grid-3">
+                    <div class="feature-card">
+                        <div class="card-icon"><i class="fa-solid fa-code"></i></div>
+                        <h3 class="card-title">FOSS & Maintainers</h3>
+                        <p class="card-desc">Kontributor sukarela yang mengelola kelangsungan hidup repositori tanpa jaminan pendanaan atau dukungan emosional dari luar.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon" style="color: var(--accent-pink);"><i class="fa-solid fa-robot"></i></div>
+                        <h3 class="card-title">LLMs in Security</h3>
+                        <p class="card-desc">Model bahasa besar (seperti Claude Opus/Mythos) yang mampu memindai kode, namun tetap rentan menghasilkan *hallucinated reports* yang salah.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon" style="color: var(--accent-cyan);"><i class="fa-solid fa-brain"></i></div>
+                        <h3 class="card-title">Cognitive Burnout</h3>
+                        <p class="card-desc">Kondisi kelelahan emosional dan kognitif akibat paparan stres kerja kronis tanpa adanya ruang pemulihan yang cukup.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: Metode Penelitian -->
+            <div class="slide">
+                <div class="slide-header">
+                    <div class="slide-badge">Bab III: Metode Perencanaan</div>
+                    <h2 class="slide-title">Alur & Metodologi Kajian</h2>
+                </div>
+                <div class="slide-body">
+                    <p class="lead">Proyek ini dirancang menggunakan metode kualitatif deskriptif berbasis studi kasus sekunder dengan alur terencana:</p>
+                    
+                    <div class="process-flow delay-1">
+                        <div class="process-step">
+                            <div class="step-num">1</div>
+                            <div class="step-text">Identifikasi Fenomena Stres</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-num">2</div>
+                            <div class="step-text">Pengumpulan Literatur LWN & Blog</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-num">3</div>
+                            <div class="step-text">Analisis Studi Kasus Rill</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-num">4</div>
+                            <div class="step-text">Sintesis Dampak Psikologis</div>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-num">5</div>
+                            <div class="step-text">Penyusunan Solusi Kebijakan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Studi Kasus 1 - Proyek Curl -->
+            <div class="slide">
+                <div class="slide-header">
+                    <div class="slide-badge">Bab IV: Hasil & Pembahasan</div>
+                    <h2 class="slide-title">Kasus 1: "The Pressure" pada Curl</h2>
+                </div>
+                <div class="slide-body grid-2">
+                    <div>
+                        <div class="stat-group delay-1">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Celah Terkonfirmasi (CVE) baru dalam satu siklus rilis di awal 2026.</div>
+                        </div>
+                        <div class="stat-group delay-2">
+                            <div class="stat-number">>30</div>
+                            <div class="stat-label">Total publikasi CVE yang diproyeksikan untuk curl di tahun 2026.</div>
+                        </div>
+                    </div>
+                    <div class="feature-card delay-3">
+                        <div class="card-icon" style="color: var(--accent-pink);"><i class="fa-solid fa-quote-left"></i></div>
+                        <p class="card-desc" style="font-style: italic; font-size: 1.05rem; line-height: 1.6; color: #fff; margin-bottom: 1rem;">
+                            "Ini adalah tekanan mental yang belum pernah terlihat atau dialami sebelumnya... kami tentu bisa mengabaikannya, tetapi kami merasa memiliki kewajiban moral..."
+                        </p>
+                        <p class="card-desc" style="text-align: right;">— <strong>Daniel Stenberg</strong>, Kontributor Utama Curl</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Studi Kasus 2 - Linux Kernel -->
+            <div class="slide">
+                <div class="slide-header">
+                    <div class="slide-badge">Bab IV: Hasil & Pembahasan</div>
+                    <h2 class="slide-title">Kasus 2: Banjir Laporan Linux Kernel</h2>
+                </div>
+                <div class="slide-body grid-2">
+                    <div class="feature-card">
+                        <div class="card-icon"><i class="fa-solid fa-server"></i></div>
+                        <h3 class="card-title">Aktivitas Pemindaian AI Raksasa</h3>
+                        <p class="card-desc" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
+                            Model baru seperti <strong>Claude Mythos Preview</strong> bermitra dengan Linux Foundation untuk mencari celah. Namun, tim riset menimbun lebih dari <strong>500 potensi kegagalan sistem (crash)</strong> yang menanti verifikasi manusia.
+                        </p>
+                        <p class="card-desc" style="font-size: 0.95rem; line-height: 1.6;">
+                            Akibatnya, tim keamanan Linux terpaksa merekrut pengembang tambahan secara mendadak demi membendung aliran laporan.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <div class="stat-group delay-1">
+                            <div class="stat-number">6.243</div>
+                            <div class="stat-label">Rekor baru laporan CVE dunia yang diterbitkan pada Maret 2026.</div>
+                        </div>
+                        <ul class="custom-list delay-2" style="font-size: 0.95rem; margin-top: 1rem;">
+                            <li>Laporan berlipat ganda dalam waktu singkat.</li>
+                            <li>Tingkat keparahan bug memicu kepanikan kerja.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Pembahasan - Asimetri Kerja AI -->
+            <div class="slide">
+                <div class="slide-header">
+                    <div class="slide-badge">Bab IV: Hasil & Pembahasan</div>
+                    <h2 class="slide-title">Pembahasan: Asimetri Kerja AI</h2>
+                </div>
+                <div class="slide-body">
+                    <p class="lead" style="margin-bottom: 1rem;">Lahir ketimpangan beban kerja (*labor asymmetry*) yang ekstrem antara penemu bug dan penambal bug:</p>
+                    
+                    <div class="vs-container">
+                        <div class="vs-pane offense delay-1">
+                            <div class="vs-badge" style="color: var(--accent-pink);">Offense (AI / Pencari)</div>
+                            <ul class="custom-list" style="font-size: 0.85rem; margin-top: 1rem;">
+                                <li>Biaya token murah (kurang dari $20).</li>
+                                <li>Cukup skrip shell 5 baris otomatis.</li>
+                                <li>Tidak butuh pemahaman kode.</li>
+                            </ul>
+                        </div>
+                        <div class="vs-badge" style="color: var(--text-secondary); font-size: 1.5rem;">VS</div>
+                        <div class="vs-pane defense delay-2">
+                            <div class="vs-badge" style="color: var(--accent-cyan);">Defense (Maintainer Manusia)</div>
+                            <ul class="custom-list" style="font-size: 0.85rem; margin-top: 1rem;">
+                                <li>Verifikasi manual & mereproduksi crash.</li>
+                                <li>Membaca ratusan halaman berkas sampah AI.</li>
+                                <li>Mendebat pengguna yang berargumen via AI.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Solusi & Kebijakan Mitigasi -->
+            <div class="slide">
+                <div class="slide-header">
+                    <div class="slide-badge">Bab IV: Hasil & Pembahasan</div>
+                    <h2 class="slide-title">Rekomendasi Kebijakan & Solusi</h2>
+                </div>
+                <div class="slide-body grid-3">
+                    <div class="feature-card">
+                        <div class="card-icon" style="color: var(--accent-pink);"><i class="fa-solid fa-filter"></i></div>
+                        <h3 class="card-title">Filter AI Ketat</h3>
+                        <p class="card-desc">Menolak secara otomatis atau mendegradasi prioritas laporan siber yang dicurigai sebagai *raw output* AI tanpa verifikasi dan langkah reproduksi manual yang jelas.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                        <h3 class="card-title">Pendanaan Komunitas</h3>
+                        <p class="card-desc">Memperluas proyek aliansi seperti *Project Glasswing* untuk mendanai jam kerja pengembang secara finansial, bukan sekadar menyediakan token AI gratis.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="card-icon" style="color: var(--accent-cyan);"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3 class="card-title">Defensive AI Tools</h3>
+                        <p class="card-desc">Menyediakan AI pendamping khusus di sisi maintainer untuk menyaring duplikasi laporan dan memfilter halusinasi bug sebelum dibaca oleh manusia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Kesimpulan & Penutup -->
+            <div class="slide cover-slide">
+                <div class="slide-badge">Bab V: Penutup</div>
+                <h2 class="slide-title" style="font-size: 3rem; margin-bottom: 2rem;">Sekian & Terima Kasih</h2>
+                <p class="lead" style="max-width: 700px; margin: 0 auto 3rem auto;">
+                    "Menjaga kesehatan mental pengembang open source adalah langkah krusial untuk mengamankan fondasi infrastruktur digital dunia."
+                </p>
+                
+                <div style="display: flex; gap: 1rem;">
+                    <div class="meta-item"><i class="fa-solid fa-envelope"></i> UTDI Yogyakarta</div>
+                    <div class="meta-item">|</div>
+                    <div class="meta-item"><i class="fa-solid fa-users"></i> Kelompok PjBL</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Navigation Bar & Progress indicator -->
+        <div class="nav-bar">
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span id="slide-title-indicator">Slide Cover</span>
+                    <span id="slide-num-indicator">1 dari 10</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progress-fill"></div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="btn-nav" id="btn-prev" title="Sebelumnya (Panah Kiri)"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="btn-nav" id="btn-next" title="Berikutnya (Panah Kanan / Spasi)"><i class="fa-solid fa-chevron-right"></i></button>
+                <button class="btn-nav" id="btn-fullscreen" title="Layar Penuh (F)"><i class="fa-solid fa-expand"></i></button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Keyboard Tip Hint -->
+    <div class="keyboard-tip">
+        <span>Gunakan tombol <span class="kbd-key"><i class="fa-solid fa-arrow-left"></i></span> / <span class="kbd-key"><i class="fa-solid fa-arrow-right"></i></span> atau <span class="kbd-key">Spasi</span> untuk berpindah slide.</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const wrapper = document.getElementById('slides-wrapper');
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            const btnFullscreen = document.getElementById('btn-fullscreen');
+            const slideTitleIndicator = document.getElementById('slide-title-indicator');
+            const slideNumIndicator = document.getElementById('slide-num-indicator');
+            const progressFill = document.getElementById('progress-fill');
+            
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            const slideTitles = [
+                "Slide Cover",
+                "Latar Belakang Permasalahan",
+                "Rumusan Masalah & Tujuan",
+                "Tinjauan Pustaka",
+                "Metodologi Kajian",
+                "Studi Kasus 1: Curl",
+                "Studi Kasus 2: Linux Kernel",
+                "Pembahasan: Asimetri Kerja AI",
+                "Rekomendasi Kebijakan",
+                "Kesimpulan & Penutup"
+            ];
+
+            // FUNCTION TO UPDATE ACTIVE SLIDE DISPLAY
+            function updateSlides() {
+                slides.forEach((slide, idx) => {
+                    slide.classList.remove('active', 'prev-slide', 'next-slide');
+                    if (idx === currentSlide) {
+                        slide.classList.add('active');
+                    } else if (idx < currentSlide) {
+                        slide.classList.add('prev-slide');
+                    } else {
+                        slide.classList.add('next-slide');
+                    }
+                });
+
+                // Update indicators
+                slideTitleIndicator.textContent = slideTitles[currentSlide];
+                slideNumIndicator.textContent = `${currentSlide + 1} dari ${totalSlides}`;
+                
+                // Update Progress bar
+                const progressPct = ((currentSlide + 1) / totalSlides) * 100;
+                progressFill.style.width = `${progressPct}%`;
+            }
+
+            // NAVIGATION TRIGGERS
+            function nextSlide() {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateSlides();
+                }
+            }
+
+            function prevSlide() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateSlides();
+                }
+            }
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'Space' || e.keyCode === 32) {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                } else if (e.key === 'f' || e.key === 'F') {
+                    toggleFullscreen();
+                }
+            });
+
+            // Button clicks
+            btnNext.addEventListener('click', nextSlide);
+            btnPrev.addEventListener('click', prevSlide);
+
+            // Fullscreen handling
+            function toggleFullscreen() {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(err => {
+                        console.error(`Gagal masuk mode fullscreen: ${err.message}`);
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+
+            btnFullscreen.addEventListener('click', toggleFullscreen);
+
+            // Update icon on fullscreen change
+            document.addEventListener('fullscreenchange', () => {
+                const icon = btnFullscreen.querySelector('i');
+                if (document.fullscreenElement) {
+                    icon.classList.remove('fa-expand');
+                    icon.classList.add('fa-compress');
+                } else {
+                    icon.classList.remove('fa-compress');
+                    icon.classList.add('fa-expand');
+                }
+            });
+
+            // Touch gestures for mobile swipe
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+
+            document.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+
+            function handleSwipe() {
+                const threshold = 50;
+                if (touchEndX < touchStartX - threshold) {
+                    nextSlide(); // Swiped left
+                }
+                if (touchEndX > touchStartX + threshold) {
+                    prevSlide(); // Swiped right
+                }
+            }
+
+            // Initial view setup
+            updateSlides();
+        });
+    </script>
+</body>
+</html>
