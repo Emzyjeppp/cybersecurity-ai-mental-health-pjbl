@@ -9,6 +9,13 @@ Repositori ini berisi proyek pembelajaran berbasis proyek (**Project-Based Learn
 * **Kelas**: IF-1 Genap 2026
 * **Dosen Pengampu**: Yudhi Kusnanto, S.Kom., M.Kom.
 * **Institusi**: Universitas Teknologi Digital Indonesia (UTDI) Yogyakarta
+* **Anggota Kelompok**:
+  1. 255410014 - MUHAMMAD JEPRI
+  2. 215410133 - JUNSO SUAT
+  3. 225410012 - BRIDGETTE DIANITA PUTRI LESTARI
+  4. 215410113 - YOSEFINA EMA
+  5. 235410035 - HENDRI AGUNG PERMANA
+  6. 225410021 - OPAN SAPUTRA NAINGGOLAN
 
 ---
 

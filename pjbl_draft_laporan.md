@@ -7,7 +7,7 @@
 
 ```
                        PROJECT-BASED LEARNING
-             MATA KULIAH: [NAMA MATA KULIAH ANDA]
+             MATA KULIAH: CYBERSECURITY DAN THREAT INTELLIGENCE
 
              
       ANALISIS DAMPAK PENGGUNAAN TEKNOLOGI AI/LLM TERHADAP 
@@ -17,16 +17,17 @@
 
 
                                Oleh:
-                         [NAMA ANGGOTA 1] - [NIM 1]
-                         [NAMA ANGGOTA 2] - [NIM 2]
-                         [NAMA ANGGOTA 3] - [NIM 3]
-                         [NAMA ANGGOTA 4] - [NIM 4]
-                         [NAMA ANGGOTA 5] - [NIM 5]
+                       MUHAMMAD JEPRI                 - 255410014
+                       JUNSO SUAT                     - 215410133
+                       BRIDGETTE DIANITA P. L.        - 225410012
+                       YOSEFINA EMA                   - 215410113
+                       HENDRI AGUNG PERMANA           - 235410035
+                       OPAN SAPUTRA NAINGGOLAN        - 225410021
 
 
 
-                     PROGRAM STUDI [NAMA PRODI]
-                     FAKULTAS TEKNOLOGI INFORMASI
+                        PROGRAM STUDI INFORMATIKA
+                      FAKULTAS TEKNOLOGI INFORMASI
              UNIVERSITAS TEKNOLOGI DIGITAL INDONESIA
                                 YOGYAKARTA
                                   2026
@@ -43,23 +44,27 @@ JUDUL PROYEK PjBL   : Analisis Dampak Penggunaan Teknologi AI/LLM
                       Terhadap Kesehatan Mental Developer Proyek 
                       Open Source (Studi Kasus: Maintainer Curl & 
                       Linux Kernel)
-MATA KULIAH         : [Nama Mata Kuliah]
-PROGRAM STUDI       : [Nama Program Studi]
-ANGGOTA KELOMPOK    : 1. Nama: [Nama Anggota 1]   NIM: [NIM 1]
-                      2. Nama: [Nama Anggota 2]   NIM: [NIM 2]
-                      3. Nama: [Nama Anggota 3]   NIM: [NIM 3]
+MATA KULIAH         : Cybersecurity Dan Threat Intelligence
+PROGRAM STUDI       : Informatika
+ANGGOTA KELOMPOK    : 1. Nama: MUHAMMAD JEPRI             NIM: 255410014
+                      2. Nama: JUNSO SUAT                 NIM: 215410133
+                      3. Nama: BRIDGETTE DIANITA P. L.    NIM: 225410012
+                      4. Nama: YOSEFINA EMA               NIM: 215410113
+                      5. Nama: HENDRI AGUNG PERMANA       NIM: 235410035
+                      6. Nama: OPAN SAPUTRA NAINGGOLAN    NIM: 225410021
 
-Menyatakan bahwa Laporan Project-Based Learning (PjBL) ini telah diperiksa, disetujui, dan disahkan sebagai salah satu syarat pemenuhan tugas mata kuliah [Nama Mata Kuliah] pada Program Studi [Nama Prodi], Fakultas Teknologi Informasi, Universitas Teknologi Digital Indonesia.
+Menyatakan bahwa Laporan Project-Based Learning (PjBL) ini telah diperiksa, disetujui, dan disahkan sebagai salah satu syarat pemenuhan tugas mata kuliah Cybersecurity Dan Threat Intelligence pada Program Studi Informatika, Fakultas Teknologi Informasi, Universitas Teknologi Digital Indonesia.
 
 
-                                            Yogyakarta, 8 Juli 2026
+                                            Yogyakarta, 11 Juli 2026
                                             Menyetujui,
-                                            Dosen Pengampu [Nama Mata Kuliah]
+                                            Dosen Pengampu Cybersecurity Dan
+                                            Threat Intelligence
 
 
 
 
-                                            [Nama Dosen Pengampu beserta Gelar]
+                                            Yudhi Kusnanto, S.Kom., M.Kom.
                                             NIDN/NIK. ...................
 ```
 
@@ -69,16 +74,16 @@ Menyatakan bahwa Laporan Project-Based Learning (PjBL) ini telah diperiksa, dise
 
 Puji syukur kami panjatkan ke hadirat Tuhan Yang Maha Esa atas berkat, rahmat, dan karunia-Nya, sehingga kami dapat menyelesaikan laporan tugas *Project-Based Learning* (PjBL) yang berjudul **"Analisis Dampak Penggunaan Teknologi AI/LLM Terhadap Kesehatan Mental Developer Proyek Open Source"** tepat pada waktunya.
 
-Tujuan dari penyusunan laporan ini adalah untuk memenuhi salah satu syarat kelulusan tugas mata kuliah [Nama Mata Kuliah] pada Program Studi [Nama Prodi] Universitas Teknologi Digital Indonesia. Proyek ini mengeksplorasi pergeseran paradigma keamanan siber dengan lahirnya pemindai kerentanan berbasis AI (*AI vulnerability scanner*) dan bagaimana hal tersebut berdampak langsung pada kesejahteraan mental pengembang yang memelihara infrastruktur digital dunia secara sukarela.
+Tujuan dari penyusunan laporan ini adalah untuk memenuhi salah satu syarat kelulusan tugas mata kuliah Cybersecurity Dan Threat Intelligence pada Program Studi Informatika Universitas Teknologi Digital Indonesia. Proyek ini mengeksplorasi pergeseran paradigma keamanan siber dengan lahirnya pemindai kerentanan berbasis AI (*AI vulnerability scanner*) dan bagaimana hal tersebut berdampak langsung pada kesejahteraan mental pengembang yang memelihara infrastruktur digital dunia secara sukarela.
 
 Dalam kesempatan ini, penulis ingin menyampaikan ucapan terima kasih yang tulus kepada:
 1. Ibu Prof. Dr. LN. Harnaningrum, S.Si., M.T. selaku Wakil Rektor 1 Universitas Teknologi Digital Indonesia.
-2. [Nama Dosen Pengampu], selaku Dosen Pengampu mata kuliah [Nama Mata Kuliah] yang telah memberikan bimbingan, arahan, dan saran-saran berharga selama perencanaan dan penyusunan proyek ini.
+2. Bapak Yudhi Kusnanto, S.Kom., M.Kom., selaku Dosen Pengampu mata kuliah Cybersecurity Dan Threat Intelligence yang telah memberikan bimbingan, arahan, dan saran-saran berharga selama perencanaan dan penyusunan proyek ini.
 3. Rekan-rekan anggota kelompok yang telah bekerja keras dan bekerja sama secara solid di sepanjang semester ini.
 
 Kami menyadari bahwa laporan ini masih jauh dari kesempurnaan. Oleh karena itu, kritik dan saran yang membangun sangat kami harapkan guna perbaikan di masa mendatang. Akhir kata, semoga laporan PjBL ini dapat memberikan manfaat, wawasan, dan inspirasi bagi pembaca.
 
-Yogyakarta, 8 Juli 2026
+Yogyakarta, 11 Juli 2026
 
 Tim Penulis
 
