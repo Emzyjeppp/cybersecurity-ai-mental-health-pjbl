@@ -10,8 +10,8 @@
              MATA KULIAH: CYBERSECURITY DAN THREAT INTELLIGENCE
 
              
-      ANALISIS DAMPAK PENGGUNAAN TEKNOLOGI AI/LLM TERHADAP 
-     KESEHATAN MENTAL DEVELOPER PROYEK OPEN SOURCE (STUDI KASUS:
+      KETIKA SOLUSI MENJADI BEBAN: PARADOKS OTOMASI AI DALAM 
+     KESEHATAN MENTAL MAINTAINER OPEN SOURCE (STUDI KASUS:
                    MAINTAINER CURL & LINUX KERNEL)
 
 
@@ -40,10 +40,9 @@
 ```
                         HALAMAN PENGESAHAN
 
-JUDUL PROYEK PjBL   : Analisis Dampak Penggunaan Teknologi AI/LLM 
-                      Terhadap Kesehatan Mental Developer Proyek 
-                      Open Source (Studi Kasus: Maintainer Curl & 
-                      Linux Kernel)
+JUDUL PROYEK PjBL   : Ketika Solusi Menjadi Beban: Paradoks Otomasi AI
+                      Dalam Kesehatan Mental Maintainer Open Source 
+                      (Studi Kasus: Maintainer Curl & Linux Kernel)
 MATA KULIAH         : Cybersecurity Dan Threat Intelligence
 PROGRAM STUDI       : Informatika
 ANGGOTA KELOMPOK    : 1. Nama: MUHAMMAD JEPRI             NIM: 255410014
@@ -72,7 +71,7 @@ Menyatakan bahwa Laporan Project-Based Learning (PjBL) ini telah diperiksa, dise
 
 ## 3. KATA PENGANTAR (TEMPLATE)
 
-Puji syukur kami panjatkan ke hadirat Tuhan Yang Maha Esa atas berkat, rahmat, dan karunia-Nya, sehingga kami dapat menyelesaikan laporan tugas *Project-Based Learning* (PjBL) yang berjudul **"Analisis Dampak Penggunaan Teknologi AI/LLM Terhadap Kesehatan Mental Developer Proyek Open Source"** tepat pada waktunya.
+Puji syukur kami panjatkan ke hadirat Tuhan Yang Maha Esa atas berkat, rahmat, dan karunia-Nya, sehingga kami dapat menyelesaikan laporan tugas *Project-Based Learning* (PjBL) yang berjudul **"Ketika Solusi Menjadi Beban: Paradoks Otomasi AI Dalam Kesehatan Mental Maintainer Open Source"** tepat pada waktunya.
 
 Tujuan dari penyusunan laporan ini adalah untuk memenuhi salah satu syarat kelulusan tugas mata kuliah Cybersecurity Dan Threat Intelligence pada Program Studi Informatika Universitas Teknologi Digital Indonesia. Proyek ini mengeksplorasi pergeseran paradigma keamanan siber dengan lahirnya pemindai kerentanan berbasis AI (*AI vulnerability scanner*) dan bagaimana hal tersebut berdampak langsung pada kesejahteraan mental pengembang yang memelihara infrastruktur digital dunia secara sukarela.
 
@@ -115,11 +114,12 @@ BAB III METODE PERENCANAAN .....................................................
    2. Penjelasan Tahapan .............................................................. 9
 
 BAB IV HASIL DAN PEMBAHASAN ........................................................... 11
-   1. Studi Kasus 1: "The Pressure" pada Proyek Curl (Daniel Stenberg) ................. 11
-   2. Studi Kasus 2: Banjir Laporan Keamanan Kernel Linux (Anthropic Mythos) ........... 12
+   1. Studi Kasus 1: Proyek Curl & Timeline Keluhan (Februari - Mei 2026) .............. 11
+   2. Studi Kasus 2: Linux Kernel & Risiko Chaining Celah Keamanan ..................... 12
    3. Ketimpangan Kerja AI (AI Labor Asymmetry) ....................................... 13
    4. Dampak Mental: Stres Kronis, Kecemasan Eksistensial, dan Burnout ................. 14
-   5. Usulan Kebijakan Mitigasi Burnout ............................................... 15
+   5. Langkah Mitigasi Riil (Respons Curl & Linux Kernel) ............................. 15
+   6. Usulan Kebijakan Lanjutan & Saran (Komunitas, UTDI, Peneliti) ................... 16
 
 BAB V PENUTUP .......................................................................... 17
    1. Simpulan ........................................................................ 17
@@ -204,36 +204,41 @@ graph TD
 
 ### BAB IV HASIL DAN PEMBAHASAN
 
-#### 1. Studi Kasus 1: "The Pressure" pada Proyek Curl (Daniel Stenberg)
-Pada Mei 2026, Daniel Stenberg selaku pembuat dan pengembang utama `curl` mempublikasikan tulisan berjudul *"The Pressure"*. Tulisannya menyingkap tekanan luar biasa yang dialami tim keamanan proyek. Menjelang paruh pertama tahun 2026, `curl` mencatat rekor buruk dengan **12 kerentanan terkonfirmasi dalam satu siklus rilis**, memproyeksikan total lebih dari 30 CVE dalam waktu kurang dari enam bulan. Stenberg menekankan bahwa tekanan ini murni bersifat mental: 
-> *"Kami merasa berkewajiban untuk memperbaiki masalah keamanan pada perangkat lunak yang kami bantu kirimkan ke setiap perangkat di dunia. Ini bersifat personal bagi kami."*
+#### 1. Studi Kasus 1: Proyek Curl & Timeline Keluhan (Februari - Mei 2026)
+Curl adalah pustaka transfer data yang dirawat oleh satu karyawan penuh waktu, Daniel Stenberg, namun ditanam di miliaran perangkat. Dampak otomasi AI memicu pergeseran drastis pada beban kerja:
+* **Februari 2026 (FOSDEM Keynote)**: Keluhan awal berkisar pada rendahnya kualitas laporan AI (*AI slop*). Pengembang menghabiskan waktu berjam-jam untuk membantah laporan keamanan yang salah (*false positives*) dan tidak berdasar.
+* **Mei 2026 (Esai "The Pressure")**: Kualitas laporan AI meningkat tajam menjadi "benar-benar bagus" dan sulit dibantah kebenarannya. Namun, hal ini justru memicu rekor buruk berupa **12 kerentanan terkonfirmasi dalam satu siklus rilis** (proyeksi ~60 CVE sepanjang 2026). Waktu pengembang tersedot habis hanya untuk memverifikasi laporan-laporan valid yang membanjiri kotak masuk.
 
-#### 2. Studi Kasus 2: Banjir Laporan Keamanan Kernel Linux
-Daroc Alden (April 2026) melaporkan bahwa bulan Maret 2026 mencatatkan angka laporan CVE tertinggi dalam sejarah industri perangkat lunak dengan total **6.243 CVE baru**. Lonjakan drastis ini dipicu langsung oleh rilis model AI eksperimental baru (seperti Claude Mythos Preview) yang diintegrasikan ke repositori melalui skrip otomatis. Tim riset keamanan Anthropic sendiri memegang kendali atas lebih dari **500 potensi crash kernel Linux** yang belum diverifikasi. Di sisi defensif, Linux Kernel Security Team terpaksa harus merekrut lebih banyak kontributor secara mendadak hanya untuk menanggulangi beban menyaring laporan-laporan otomatis ini.
+#### 2. Studi Kasus 2: Linux Kernel & Risiko Chaining Celah Keamanan
+Sebagai sasaran utama otomasi ofensif, Linux Kernel menghadapi volume laporan mentah yang luar biasa besar:
+* **Banjir Laporan Rekor**: Meskipun laporan CVE kernel sempat melandai, volume laporan mentah sebelum triase tetap melonjak tinggi. Secara industri lintas perangkat lunak, Maret 2026 memecahkan rekor dengan **6.243 CVE baru** (171 di antaranya adalah CVE kernel Linux, melonjak dari 64 di bulan Januari).
+* **Risiko Chaining (Perangkaian Celah)**: Tim riset Anthropic memegang kendali atas lebih dari **500 potensi crash kernel** dari model Claude Mythos Preview. Bahaya terbesar adalah kemampuan AI untuk **merangkai (chaining) belasan celah kecil** (seperti *buffer overflow*, *use-after-free*, *double-free*) yang jika berdiri sendiri tidak berbahaya karena tertahan pertahanan *defense-in-depth*, namun secara kolektif dapat dieksploitasi untuk meraih akses root penuh ke kernel. Hal ini menambah beban mental tim keamanan karena mereka tidak bisa hanya menguji bug secara terpisah.
 
 #### 3. Ketimpangan Kerja AI (AI Labor Asymmetry)
-Analisis menunjukkan adanya **asimetri kerja yang timpang**. Seseorang hanya membutuhkan biaya token AI berkisar kurang dari $20 dan skrip shell sederhana sepanjang 5 baris untuk memicu pemindaian massal di ribuan file. Namun, bagi pengembang manusia di sisi penerima:
-* Mereka harus membaca ratusan halaman dokumen teknis yang dihasilkan AI.
-* Melakukan kompilasi ulang dan pengujian runtime untuk mereproduksi *crash*.
-* Melakukan penyaringan manual terhadap laporan palsu yang terdengar sangat ilmiah namun nihil substansi.
-* Menghadapi argumen dari pelapor egois yang menggunakan LLM untuk berdebat kusir mempertahankan laporan sampah mereka.
-
-Hal ini memindahkan seluruh beban kerja fisik dan mental dari pencari celah keamanan (*offense*) ke pemelihara sistem (*defense*) tanpa adanya kompensasi tenaga yang sebanding.
+Analisis membuktikan adanya ketimpangan beban kerja (*labor asymmetry*) yang ekstrem:
+* **Sisi Ofensif (Pencari Celah)**: Memanfaatkan skrip shell otomatis dan prompt bergaya CTF (*Capture the Flag*) dengan biaya token murah (di bawah $20 per pemindaian) tanpa perlu memahami arsitektur kode secara mendalam.
+* **Sisi Defensif (Maintainer Manusia)**: Menanggung seluruh beban fisik dan mental untuk mereproduksi crash secara manual, membaca ratusan halaman dokumen keluaran AI, menulis kode penambal (*patch*), hingga berdebat kusir dengan pengirim laporan yang tidak memahami isinya dan membalas argumen menggunakan LLM.
 
 #### 4. Dampak Mental: Stres Kronis, Kecemasan Eksistensial, dan Burnout
-Dampak kesehatan mental yang teridentifikasi meliputi:
-1. **Sindrom Tanggung Jawab Semu**: Rasa cemas konstan bahwa kode yang mereka buat dapat melumpuhkan infrastruktur global jika ada bug terlewat.
-2. **Kelelahan Kognitif Akut**: Kejenuhan mental akibat membaca gaya bahasa AI yang seragam, berulang, dan minim keaslian emosional pengirim.
-3. **Keputusasaan Eksistensial**: Perasaan bahwa usaha sukarela mereka sia-sia karena jumlah laporan otomatis tumbuh secara eksponensial sementara kapasitas fisik manusia bersifat linier.
+Dampak psikologis yang dirasakan pengembang sukarela mencakup:
+1. **Stres Tanggung Jawab Moral**: Kecemasan konstan terhadap risiko kegagalan infrastruktur digital dunia yang bertumpu pada kode mereka.
+2. **Kelelahan Kognitif Akut**: Kejenuhan mental akibat membaca gaya bahasa AI yang seragam, berulang, dan minim keaslian emosional.
+3. **Keputusasaan Eksistensial**: Perasaan bahwa kapasitas linear manusia tidak akan pernah mampu mengimbangi laju pertumbuhan laporan siber eksponensial dari mesin AI.
 
-#### 5. Langkah Mitigasi yang Sudah Diambil dan Usulan Kebijakan
-Untuk menjaga kesehatan mental pengembang, beberapa proyek open source terkemuka telah mengambil langkah nyata, di antaranya:
-1. **Curl Summer of Bliss**: Proyek `curl` menghentikan penerimaan laporan baru (kecuali kontrak berbayar) pada periode 1 Juli hingga 3 Agustus 2026 demi memberikan waktu istirahat bagi tim keamanan.
-2. **Penutupan Program Bug Bounty**: `curl` menutup program bug bounty sejak awal 2026 karena tingginya beban mental pengembang untuk memfilter "AI slop" dan menghadapi pelapor beriktikad buruk.
-3. **Perubahan Kebijakan Embargo Kernel Linux**: Kernel Linux mengubah kebijakan dengan menganggap temuan AI bersifat publik sejak awal untuk mengurangi beban koordinasi rahasia yang melelahkan.
-4. **Pengurangan Kode Rawan (Code Deprecation)**: Mengurangi luas serangan dengan mengusulkan penghapusan subsistem rawan bug yang jarang dipakai (seperti ISA/PCMCIA, AX.25, ATM, ISDN) dari kernel Linux.
-5. **Project Glasswing**: Kolaborasi Linux Foundation dengan perusahaan teknologi (termasuk Anthropic) untuk mendanai dan memberikan akses langsung ke LLM mutakhir bagi pengembang.
-6. **Penyediaan Asisten Triage AI**: Mengembangkan AI pendamping internal guna menyaring laporan duplikat dan halusinasi AI sebelum masuk ke kotak masuk manusia.
+#### 5. Langkah Mitigasi Riil (Respons Curl & Linux Kernel)
+Bukan sekadar wacana, langkah-langkah konkret yang telah terjadi di lapangan meliputi:
+1. **Curl Summer of Bliss**: Proyek `curl` menghentikan sementara penerimaan laporan bug keamanan baru di HackerOne dan email (1 Juli - 3 Agustus 2026) agar tim keamanan memiliki waktu istirahat dari tekanan triase harian.
+2. **Penutupan Program Bug Bounty**: `curl` resmi menghentikan skema bug bounty berbayar sejak awal 2026 untuk menghentikan banjir kiriman laporan AI berorientasi finansial yang membebani mental pengembang.
+3. **Perubahan Kebijapan Embargo Kernel Linux**: Kebijakan diubah agar temuan kerentanan siber berbasis AI langsung dipublikasikan sejak awal (tidak dirahasiakan), guna meminimalkan koordinasi ganda yang rumit dan melelahkan.
+4. **Penciutan Kode (Code Deprecation)**: Kernel Linux mengusulkan penghapusan beberapa subsistem kuno rawan bug yang jarang dipakai (seperti ISA/PCMCIA, AX.25, ATM, ISDN) untuk memperkecil luas serangan.
+5. **Project Glasswing**: Kemitraan industri dipimpin Linux Foundation untuk menyalurkan dana dan memberikan akses LLM pertahanan termutakhir bagi maintainer.
+
+#### 6. Usulan Kebijakan Lanjutan & Saran (Komunitas, UTDI, Peneliti)
+Bagi proyek open source lain yang belum bertindak, proyek PjBL ini merekomendasikan:
+1. **Moratorium Berkala**: Mengadopsi jeda triase terjadwal secara periodik untuk pemulihan mental tim developer.
+2. **Evaluasi Insentif Bug Bounty**: Menyesuaikan atau meniadakan hadiah tunai pada laporan siber otomatis tanpa pembuktian manual yang kuat.
+3. **Aturan Triase yang Tegas**: Kebijakan formal untuk menolak langsung laporan yang dikirimkan tanpa langkah reproduksi dan verifikasi manual dari pengirim.
+4. **Asisten Triase AI Terpercaya**: Penggunaan AI defensif internal yang dilatih khusus untuk menyaring laporan duplikat dan halusinasi AI sebelum dibaca pengembang manusia.
 
 ---
 
@@ -246,10 +251,10 @@ Berdasarkan hasil analisis kualitatif dalam proyek PjBL ini, dapat ditarik simpu
 3. Masalah utama terletak pada ketimpangan kerja (*asymmetry of labor*) antara pelapor yang menggunakan otomasi mesin dan maintainer yang menyaring secara manual.
 
 #### 2. Saran
-Adapun saran yang dapat diberikan untuk pengembangan dan penelitian ke depan adalah:
-1. Bagi Komunitas Open Source: Segera menetapkan aturan pelaporan yang mewajibkan bukti reproduksi kerentanan secara manual untuk membendung spam AI.
-2. Bagi Universitas Teknologi Digital Indonesia (UTDI): Mengintegrasikan kajian etika kecerdasan buatan (*AI Ethics*) dan kesehatan mental pengembang ke dalam kurikulum mata kuliah rekayasa perangkat lunak.
-3. Bagi Peneliti Selanjutnya: Melakukan studi kuantitatif klinis berupa penyebaran kuesioner stres kerja langsung kepada para pengembang aktif FOSS guna mendapatkan data kesehatan mental yang lebih presisi.
+Adapun saran yang dapat dirumuskan melalui proyek PjBL ini ditujukan kepada:
+1. **Komunitas Open Source**: Membuka diri terhadap adopsi jeda periodik (moratorium), memperjelas kebijakan penanganan bug AI, serta menerapkan filter ketat untuk laporan tanpa verifikasi manual.
+2. **Universitas Teknologi Digital Indonesia (UTDI)**: Mengintegrasikan materi khusus terkait etika kecerdasan buatan (*AI Ethics*) dan pengelolaan kesehatan mental pengembang dalam kurikulum mata kuliah Rekayasa Perangkat Lunak agar mahasiswa siap menghadapi realita industri modern.
+3. **Peneliti Selanjutnya**: Melakukan studi kuantitatif klinis berupa penyebaran kuesioner stres kerja secara acak langsung kepada para pengembang aktif FOSS di tingkat global untuk mendapatkan data objektif yang lebih presisi.
 
 ---
 
