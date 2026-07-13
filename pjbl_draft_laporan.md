@@ -226,11 +226,14 @@ Dampak kesehatan mental yang teridentifikasi meliputi:
 2. **Kelelahan Kognitif Akut**: Kejenuhan mental akibat membaca gaya bahasa AI yang seragam, berulang, dan minim keaslian emosional pengirim.
 3. **Keputusasaan Eksistensial**: Perasaan bahwa usaha sukarela mereka sia-sia karena jumlah laporan otomatis tumbuh secara eksponensial sementara kapasitas fisik manusia bersifat linier.
 
-#### 5. Usulan Kebijakan Mitigasi Burnout
-Untuk menjaga kesehatan mental pengembang, proyek PjBL ini mengusulkan tiga pilar kebijakan mitigasi:
-1. **Kebijakan Penyaringan Ketat (Strict Gatekeeping)**: Kebijakan di mana laporan keamanan yang dicurigai sebagai *raw output* AI tanpa verifikasi manusia ditolak secara instan atau didepresiasi prioritasnya.
-2. **Inisiatif Project Glasswing**: Mendukung program aliansi industri (didukung Linux Foundation) untuk menyediakan dana langsung bagi kompensasi jam kerja maintainer yang dihabiskan untuk menangani laporan siber.
-3. **Penyediaan Asisten Triage AI Terpercaya**: Mempersenjatai maintainer dengan AI pendamping internal (*defensive AI tools*) guna memfilter, mengelompokkan duplikasi, dan menolak draf laporan AI yang keliru sebelum masuk ke kotak masuk manusia.
+#### 5. Langkah Mitigasi yang Sudah Diambil dan Usulan Kebijakan
+Untuk menjaga kesehatan mental pengembang, beberapa proyek open source terkemuka telah mengambil langkah nyata, di antaranya:
+1. **Curl Summer of Bliss**: Proyek `curl` menghentikan penerimaan laporan baru (kecuali kontrak berbayar) pada periode 1 Juli hingga 3 Agustus 2026 demi memberikan waktu istirahat bagi tim keamanan.
+2. **Penutupan Program Bug Bounty**: `curl` menutup program bug bounty sejak awal 2026 karena tingginya beban mental pengembang untuk memfilter "AI slop" dan menghadapi pelapor beriktikad buruk.
+3. **Perubahan Kebijakan Embargo Kernel Linux**: Kernel Linux mengubah kebijakan dengan menganggap temuan AI bersifat publik sejak awal untuk mengurangi beban koordinasi rahasia yang melelahkan.
+4. **Pengurangan Kode Rawan (Code Deprecation)**: Mengurangi luas serangan dengan mengusulkan penghapusan subsistem rawan bug yang jarang dipakai (seperti ISA/PCMCIA, AX.25, ATM, ISDN) dari kernel Linux.
+5. **Project Glasswing**: Kolaborasi Linux Foundation dengan perusahaan teknologi (termasuk Anthropic) untuk mendanai dan memberikan akses langsung ke LLM mutakhir bagi pengembang.
+6. **Penyediaan Asisten Triage AI**: Mengembangkan AI pendamping internal guna menyaring laporan duplikat dan halusinasi AI sebelum masuk ke kotak masuk manusia.
 
 ---
 
