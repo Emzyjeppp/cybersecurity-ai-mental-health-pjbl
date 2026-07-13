@@ -253,7 +253,10 @@ Berdasarkan hasil analisis kualitatif dalam proyek PjBL ini, dapat ditarik simpu
 #### 2. Saran
 Adapun saran yang dapat dirumuskan melalui proyek PjBL ini ditujukan kepada:
 1. **Komunitas Open Source**: Membuka diri terhadap adopsi jeda periodik (moratorium), memperjelas kebijakan penanganan bug AI, serta menerapkan filter ketat untuk laporan tanpa verifikasi manual.
-2. **Kita sebagai Mahasiswa**: Meningkatkan kesadaran moral sejak masa perkuliahan mengenai pentingnya etika penggunaan otomasi AI, tidak mengeksploitasi alat pemindai AI secara instan tanpa verifikasi manual yang dapat membebani pengembang, serta aktif mengkampanyekan pentingnya kesehatan mental dalam ekosistem rekayasa perangkat lunak.
+2. **Kita sebagai Mahasiswa**:
+   * **Verifikasi Mandiri (Self-Triage)**: Wajib mereproduksi celah keamanan secara manual di lokal sebelum melaporkannya ke maintainer, serta menyertakan Proof of Concept (PoC) yang valid.
+   * **Etika Pelaporan (Cybersecurity Ethics)**: Menghindari pengiriman draf mentah hasil salin-tempel dari AI (*AI-generated slop*) tanpa pemahaman kode, guna menghargai waktu dan kesehatan mental kontributor.
+   * **Kontribusi Kolaboratif**: Berpartisipasi aktif dalam menyaring (*triage*) isu siber skala kecil di repositori open source untuk meringankan beban kerja maintainer.
 3. **Peneliti Selanjutnya**: Melakukan studi kuantitatif klinis berupa penyebaran kuesioner stres kerja secara acak langsung kepada para pengembang aktif FOSS di tingkat global untuk mendapatkan data objektif yang lebih presisi.
 
 ---
