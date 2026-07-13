@@ -253,7 +253,7 @@ Berdasarkan hasil analisis kualitatif dalam proyek PjBL ini, dapat ditarik simpu
 #### 2. Saran
 Adapun saran yang dapat dirumuskan melalui proyek PjBL ini ditujukan kepada:
 1. **Komunitas Open Source**: Membuka diri terhadap adopsi jeda periodik (moratorium), memperjelas kebijakan penanganan bug AI, serta menerapkan filter ketat untuk laporan tanpa verifikasi manual.
-2. **Universitas Teknologi Digital Indonesia (UTDI)**: Mengintegrasikan materi khusus terkait etika kecerdasan buatan (*AI Ethics*) dan pengelolaan kesehatan mental pengembang dalam kurikulum mata kuliah Rekayasa Perangkat Lunak agar mahasiswa siap menghadapi realita industri modern.
+2. **Kita sebagai Mahasiswa**: Meningkatkan kesadaran moral sejak masa perkuliahan mengenai pentingnya etika penggunaan otomasi AI, tidak mengeksploitasi alat pemindai AI secara instan tanpa verifikasi manual yang dapat membebani pengembang, serta aktif mengkampanyekan pentingnya kesehatan mental dalam ekosistem rekayasa perangkat lunak.
 3. **Peneliti Selanjutnya**: Melakukan studi kuantitatif klinis berupa penyebaran kuesioner stres kerja secara acak langsung kepada para pengembang aktif FOSS di tingkat global untuk mendapatkan data objektif yang lebih presisi.
 
 ---
